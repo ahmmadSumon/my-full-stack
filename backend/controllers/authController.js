@@ -9,8 +9,8 @@ const generateToken = (user) => {
 //register user
 const registerUser = async (req, res) => {
     try {
-        const {name, email, password} = req.body
-        const user = await User.create({name, email, password})
+        const {name, email, password, role} = req.body
+        const user = await User.create({name, email, password, role})
         const token = generateToken(user)
         res.status(200).json({user, token})
     } catch (error) {

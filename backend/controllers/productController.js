@@ -1,9 +1,9 @@
-const product = require('../models/product')
+
 const Product = require('../models/product')
 
 const createProduct = async (req, res) => {
     try {
-        const product = await create(req.body)
+        const product = await Product.create(req.body)
         res.status(201).json(product)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -34,7 +34,7 @@ const getAllProducts = async (req, res) => {
       }
 
       //pagination
-      const skip = (Number(page - 1) * Number*(limit))
+      const skip = (Number(page - 1) * Number(limit))
       productQuerry = productQuerry.skip(skip).limit(Number(limit))
 
       const products = await productQuerry
@@ -64,7 +64,7 @@ const singleProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-   const update = await product.findByIdAndUpdate(req.params.id, req.body, {new : true})
+   const update = await Product.findByIdAndUpdate(req.params.id, req.body, {new : true})
    res.status(200).json(update)
     } catch (error) {
         res.status(400).json({ error: error.message })
